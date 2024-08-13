@@ -1,7 +1,9 @@
 import bgSidebarDesktop from '../assets/images/bg-sidebar-desktop.svg';
 import PersonalDetails from './PersonalDetails';
+import SelectPlan from './SelectPlan';
 import Steps from './Steps';
 
+import { useState } from 'react';
 function MultiStepForm() {
 
     const [currentStep, setCurrentStep] = useState(1);  
@@ -28,7 +30,7 @@ function MultiStepForm() {
             <div >
                     <img src={bgSidebarDesktop} alt="desktop sidebar background " className='object-cover absolute z-0' />
                     
-                    <div className='z-10 relative mt-6 ml-12'>
+                    <div className='z-10 relative mt-6 ml-12 flex flex-col gap-6'>
                         {steps.map((step, index) => (
                             <Steps key={index} stepNumber={step.stepNumber} title={step.title} content={step.content} />
                         ))}
@@ -36,8 +38,8 @@ function MultiStepForm() {
 
             </div>
 
-            <div className='text-black'>
-                   <PersonalDetails />
+            <div className='text-black mt-8'>
+                 <SelectPlan />
             </div>
 
           </div>

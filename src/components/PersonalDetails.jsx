@@ -19,7 +19,7 @@ function PersonalDetails() {
 
 
   return (
-    <div className="mt-8 text-[">
+    <div className=" ">
       <h1 className="font-bold text-4xl text-[#1e4677]">Personal info</h1>
       <p className="text-gray-400 mt-2">
         Please provide your name, email and phone number.
