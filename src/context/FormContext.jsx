@@ -10,9 +10,16 @@ export const FormProvider = ({ children }) => {
         name: '',
         email: '',
         phoneNumber: '',
-        plan: '',
-        addons: []
+    
     });
+
+    const [planData, setPlanData] = useState({
+        planName: '',
+        planPrice: ''
+    });
+
+
+
 
     const handleFormChange = (e) => { 
         const { name, value } = e.target;
@@ -27,19 +34,13 @@ export const FormProvider = ({ children }) => {
 
     
 
-
-    const togglePlan = (plan) => {
-        setFormData((prev) => ({
-            ...prev,
-            plan
-        }));
-    };
+    
 
 
 
 
     return (
-        <FormContext.Provider value={{ formData, setFormData, handleFormChange }}>
+        <FormContext.Provider value={{ formData, setFormData, handleFormChange, planData, setPlanData }}>
             {children}
         </FormContext.Provider>
     );

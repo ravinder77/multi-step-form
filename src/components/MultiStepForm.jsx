@@ -2,6 +2,7 @@ import bgSidebarDesktop from '../assets/images/bg-sidebar-desktop.svg';
 import PersonalDetails from './PersonalDetails';
 import SelectPlan from './SelectPlan';
 import Steps from './Steps';
+import AddOns from './AddOns';
 
 import { useState } from 'react';
 function MultiStepForm() {
@@ -38,8 +39,10 @@ function MultiStepForm() {
 
             </div>
 
-            <div className='text-black mt-8'>
-                 <SelectPlan />
+                <div className='text-black mt-8'>
+                    <AddOns />
+                    
+
             </div>
 
           </div>

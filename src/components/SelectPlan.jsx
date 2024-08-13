@@ -10,7 +10,10 @@ import { FormContext } from '../context/FormContext';
 
 function SelectPlan() {
 
-    const {plan} = useContext(FormContext);
+    const { planData, setPlanData } = useContext(FormContext);
+
+    const { planName, planPrice } = planData;
+
 
 
 
@@ -19,14 +22,26 @@ function SelectPlan() {
     
     const [toggle, setToggle] = useState(false);    
 
-    function isToggled() {
+    function isMonthlyOrYearly() {
         setToggle(!toggle);
-        console.log('toggled');
+        setMonthly(!monthly);
+        setYearly(!yearly);
+       
     }
 
-    const monthlyOrYearly = () => { 
-        
+    function handlePlan(plan, price) {
+        setPlanData({
+            planName: plan,
+            planPrice: price
+        })
+        console.log(plan, price);
     }
+
+    console.log(planData);
+    
+
+
+    
 
     
 
@@ -36,25 +51,37 @@ function SelectPlan() {
             <h3 className="text-gray-400 mt-2">You have the option of monthly or yearly billing.</h3>
 
             <div className='mt-10 flex flex-row gap-6 '>
-                <div className="w-36 border border-gray-400 flex flex-col items-start justify-between gap-10 p-4 rounded-md cursor-pointer active:border-purple-700" >
+
+                <div
+                    className="w-36 border border-gray-400 flex flex-col items-start justify-between gap-10 p-4 rounded-md cursor-pointer hover:border-purple-700"
+                    onClick={() => handlePlan('Arcade', monthly ? 9 : 99)}
+                    
+                >
                     <img src={iconArcade} alt="icon" />
                     <div>
                         <h3 className=' text-[#1e4677] font-medium'>Arcade</h3>
-                        <p className='text-gray-400 font-medium text-sm'>&#36;9/mo</p>
+                        <p className='text-gray-400 font-medium text-sm'>&#36;{monthly ? '9/mo' : '99/yr'}</p>
                     </div>
                 </div>
-                <div className="w-36 border border-gray-400 flex flex-col items-start justify-between gap-10 p-4 rounded-md cursor-pointer" >
+                <div
+                    className="w-36 border border-gray-400 flex flex-col items-start justify-between gap-10 p-4 rounded-md cursor-pointer  hover:border-purple-700"
+
+                    onClick={() => handlePlan('Advanced', monthly ? 12 : 120)}
+                >
                     <img src={iconAdvanced} alt="icon" />
                     <div>
                         <h3 className=' text-[#1e4677] font-medium'>Advanced</h3>
-                        <p className='text-gray-400 font-medium text-sm'>&#36;12/mo</p>
+                        <p className='text-gray-400 font-medium text-sm'>&#36;{monthly ? '12/mo' : '120/yr'}</p>
                     </div>
                 </div>
-                <div className="w-36 border border-gray-400 flex flex-col items-start justify-between gap-10 p-4 rounded-md cursor-pointer " >
+                <div
+                    className="w-36 border border-gray-400 flex flex-col items-start justify-between gap-10 p-4 rounded-md cursor-pointer  hover:border-purple-700"
+                    onClick={() => handlePlan('Pro', monthly ? 15 : 150)}
+                >
                     <img src={iconPro} alt="icon" />
                     <div>
                         <h3 className=' text-[#1e4677] font-medium'>Pro</h3>
-                        <p className='text-gray-400 font-medium text-sm'>&#36;15/mo</p>
+                        <p className='text-gray-400 font-medium text-sm'>&#36;{monthly ? '15/mo' : '150/yr'}</p>
                     </div>
                 </div>
              
@@ -64,7 +91,9 @@ function SelectPlan() {
                 <p className='font-medium text-sm'>Monthly</p>
                 <button
                     className='rounded-full bg-[#1e4677] w-10 h-5 relative inline-flex items-center'
-                    onClick={isToggled}
+                    onClick={isMonthlyOrYearly} 
+
+
                 >
                     <span className={`w-4 h-4 inline-block bg-white rounded-full transform transition-transform duration-200 ${toggle ? 'translate-x-5' : 'translate-x-0'} `}></span>
                 </button>
